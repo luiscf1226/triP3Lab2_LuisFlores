@@ -2,29 +2,38 @@
 #include <iomanip>
 #include <string>
 #include <cstdlib>
+#include <string.h>
 using namespace std;
-void recursive (int a[],int num){
-	if(num>1){//recorrer
-		for(int i=0;i<num-1;i++){
-			if(a[i]>a[i+1]){//burbuja
-				int n=a[i];
-				a[i]=a[i+1];
-				a[i+1]=n;
-			}
-		}
-		num--;//decrementa en 1
-		recursive(a,num);//recursivo llamarse de nuevo
-	}else{
-		return;
+void intercambio(int a[],int i,int j){
+	int ar = a[i];
+    a[i] = a[j];
+    a[j] = ar;
+}//intercambio
+void print(int a[], int num){
+	for(int j=0;j<20;j++){
+		cout<<"  "<<a[j];
 	}
-	if(num==1){//caso base de 20 num baja a 1
-		cout<<"Cadena Nueva: "<<endl;
-		for(int j=0;j<20;j++){
-			cout<<"  "<<a[j];
+}//fin print
+void recursion(int a[],int n){
+	for( int i=0;i < n-1; i++){
+		if(a[i]>a[i+1]){//comparo de 1 en 1
+			intercambio(a,i,i+1);
 		}
-		cout<<endl;	
-	}	
-}//fin recursivo
+	}
+	if(n - 1> 1){
+		recursion(a,n-1);
+	}
+}	//fin nrecursion
+int limite2 (float n){
+	float k=1;
+	float t=0;
+	if(k==n){//caso base
+		return k;
+	}else{ 
+		return t+=((2*k)-1)/(k*(k+1));
+		limite2(k+1);
+	}
+}
 
 int main() {
 	//comienzo
@@ -37,24 +46,40 @@ int main() {
 			cout<<"Ejercisio 1"<<endl;
 			cout<<"Ingrese Cadena: ";
 			cin>>pal;
+			int r=0;
+			for( int i=0; i<pal.length();i++){
+				if()
+			}
 			
-		}
-		if(main==2){
-				
+		}//opcion1
+		if(main==2){		
 		cout<<"Ejercisio 2"<<endl;
 		int array[20];
 		for (int i=0;i<20;i++){
 			array[i]=1+(rand()%100);
 		}
 		cout<<"Cadena Original: "<<endl;
-		for(int j=0;j<20;j++){
-			cout<<"  "<<array[j];
-		}
+		print(array,20);
 		cout<<endl;
-		recursive(array,20);
+		//nueva
+		int n=20;
+		recursion(array,n);
+		print(array,n);
+		cout<<endl;
+		
+	    }//opcion 2
+	    if(main==3){
+	    	float n;
+	    	cout<<"Ingrese el Limite: "<<endl;
+	    	cin>>n;
+	    	float k=0;
+	    	cout<<"Su Limite era: "<<n<<endl;
+	    	cout<<"Resultado: ";
+	    	limite2(n);
+	    	cout<<n;
+	    	
 		}
 	
-		
-	}
-	return 0;
+
+	}  
 }
