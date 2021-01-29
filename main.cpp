@@ -65,21 +65,21 @@ int main() {
 						r = 0;
 					}else{
 						r = 1;
-					}
+					}//fin
 				}else if (pal[i] == 'A'){
 					if ((r == 1 && pal[i + 3] == '0') || (r == 0 && pal[i + 3] == '1') || (r == 0 && pal[i + 3] == '0')){
 						r= 0;
 					}else{
 						r = 1;
-					}
+					}//fin
 				}else if (pal[i] == 'O'){
 					if (r == 0 && pal[i + 2] == '0'){
 						r = 0;
 					}else{
 						r = 1;
 					}
-				}
-			}//fin del for que recorre el length de la cadena
+				}//fin
+			}
 			if(r==1){
 				cout<<"Verdadero"<<endl;
 			}else{
