@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <string.h>
 using namespace std;
+
 void intercambio(int a[],int i,int j){
 	int ar = a[i];
     a[i] = a[j];
@@ -24,14 +25,15 @@ void recursion(int a[],int n){
 		recursion(a,n-1);
 	}
 }	//fin nrecursion
-int limite2 (float n){
-	float k=1;
-	float t=0;
-	if(k==n){//caso base
-		return k;
+float limite2 (float t,float a,int b){
+	if(a==b-1){//caso base
+		return t;
 	}else{ 
-		return t+=((2*k)-1)/(k*(k+1));
-		limite2(k+1);
+		float p1,p2;
+		p1=(2*b)-1;
+		p2=(b*(b+1));
+		t=t+(p1/p2);
+		return limite2(t,a,b+1);
 	}
 }
 
@@ -47,11 +49,44 @@ int main() {
 			cout<<"Ingrese Cadena: ";
 			cin>>pal;
 			int r=0;
-			for( int i=0; i<pal.length();i++){
-				if()
+			//01234
+			//1AND1
+			for (int i = 0; i < pal.length(); i++){
+
+				if (pal[i] == 'A' && i == 1){
+					if ((pal[i - 1] == '1' && pal[i + 3] == '0') || (pal[i - 1] == '0' && pal[i + 3] == '1') || (pal[i - 1] == '0' && pal[i + 3] == '0')){
+						r = 0;
+					}else{
+						r = 1;
+					}
+				}//fin primer if
+				else if (pal[i] == 'O' && i == 1){
+					if (r == '0' && pal[i + 2] == '0'){
+						r = 0;
+					}else{
+						r = 1;
+					}
+				}else if (pal[i] == 'A'){
+					if ((r == 1 && pal[i + 3] == '0') || (r == 0 && pal[i + 3] == '1') || (r == 0 && pal[i + 3] == '0')){
+						r= 0;
+					}else{
+						r = 1;
+					}
+				}else if (pal[i] == 'O'){
+					if (r == 0 && pal[i + 2] == '0'){
+						r = 0;
+					}else{
+						r = 1;
+					}
+				}
+			}//fin del for que recorre el length de la cadena
+			if(r==1){
+				cout<<"Verdadero"<<endl;
+			}else{
+				cout<<"Falso"<<endl;
 			}
 			
-		}//opcion1
+		}//fin opcion1
 		if(main==2){		
 		cout<<"Ejercisio 2"<<endl;
 		int array[20];
@@ -63,21 +98,18 @@ int main() {
 		cout<<endl;
 		//nueva
 		int n=20;
+		cout<<"NUEVA: "<<endl;
 		recursion(array,n);
 		print(array,n);
 		cout<<endl;
 		
-	    }//opcion 2
+	    }// fin opcion 2
 	    if(main==3){
-	    	float n;
+	    	float a=0;
 	    	cout<<"Ingrese el Limite: "<<endl;
-	    	cin>>n;
-	    	float k=0;
-	    	cout<<"Su Limite era: "<<n<<endl;
+	    	cin>>a;
 	    	cout<<"Resultado: ";
-	    	limite2(n);
-	    	cout<<n;
-	    	
+	    	cout<<limite2(0,a,1)<<endl;	
 		}
 	
 
